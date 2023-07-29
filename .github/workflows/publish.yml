@@ -26,7 +26,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore /p:SdkBuild=${{ inputs.sdkBuild }} /p:TargetVersion="${{ inputs.targetVersion }}"
     - name: Build
-      run: dotnet pack CsWinRTProjection/CsWinRTProjection.csproj -c Release --no-restore /clp:ErrorsOnly /p:SdkBuild=${{ inputs.sdkBuild }} /p:TargetVersion="${{ inputs.targetVersion }}"
+      run: dotnet pack CsWinRTProjection/CsWinRTProjection.csproj -c Release --no-restore /p:SdkBuild=${{ inputs.sdkBuild }} /p:TargetVersion="${{ inputs.targetVersion }}"
     - name: Publish
       run: dotnet nuget push "CsWinRTProjection\bin\Release\*.nupkg" -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
     - name: Upload artifacts
