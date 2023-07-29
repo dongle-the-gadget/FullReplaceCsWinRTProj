@@ -18,6 +18,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Configure Pagefile
+        uses: al-cheb/configure-pagefile-action@v1.3
+        with:
+          minimum-size: 32GB
+          maximum-size: 32GB
+          disk-root: "C:"
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
