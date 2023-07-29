@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!-- Putting it here just for the project to load -->
+		<SdkBuild Condition="$(SdkBuild) == ''">19041</SdkBuild>
+		
+		<!-- Set target framework to .NET 6 -->
+		<TargetFramework>net6.0-windows10.0.$(SdkBuild)</TargetFramework>
+
+		<!-- Configure C#/WinRT -->
+		<CsWinRTWindowsMetadata>10.0.$(SdkBuild).0+</CsWinRTWindowsMetadata>
+		<CsWinRTFilters>
+-include Windows
+		</CsWinRTFilters>
+		<DefineConstants>UAC_VERSION_10</DefineConstants>
+
+		<AssemblyName>Microsoft.Windows.Full.SDK.NET</AssemblyName>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<PackageId>Dongle.WindowsSDK.NET.Replace</PackageId>
+		<Authors>Dongle</Authors>
+		<Company />
+		<Description>A C#/WinRT projection for the Windows.* namespace.</Description>
+		<Copyright>Unlicensed work</Copyright>
+		<RepositoryUrl>https://github.com/dongle-the-gadget/CsWinRTProjectionForWindows</RepositoryUrl>
+		<PackageTags>cswinrt;windows</PackageTags>
+		
+		<TargetVersion Condition="$(TargetVersion) == ''">10.0.$(SdkBuild).0</TargetVersion>
+		
+		<AssemblyVersion>$(TargetVersion)</AssemblyVersion>
+		<FileVersion>$(TargetVersion)</FileVersion>
+		<VersionPrefix>$(TargetVersion)</VersionPrefix>
+		
+		<PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+		<IsTrimmable>true</IsTrimmable>
+		<Version Condition="$(VersionSuffix) != ''">$(VersionPrefix)-$(VersionSuffix)</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- C#/WinRT NuGet, we are using a private version with support for WUX. -->
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0-private.0" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="$(OutDir)\WinRT.Runtime.dll">
+			<Pack>true</Pack>
+			<PackagePath>lib\$(TargetFramework)</PackagePath>
+		</Content>
+		<Content Include="Dongle.WindowsSDK.NET.targets">
+			<Pack>true</Pack>
+			<PackagePath>buildTransitive</PackagePath>
+		</Content>
+	</ItemGroup>
+
+</Project>
