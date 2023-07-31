@@ -37,6 +37,7 @@
 
 	<ItemGroup>
 		<!-- C#/WinRT NuGet, we are using a private version with support for WUX. -->
+		<FrameworkReference Remove="Microsoft.Windows.SDK.NET.Ref" />
 		<PackageReference Include="Dongle.Windows.CsWinRT" Version="*-*" PrivateAssets="all" />
 	</ItemGroup>
 
