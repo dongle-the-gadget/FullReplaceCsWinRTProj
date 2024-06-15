@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="Dongle.WindowsSDK.NET.targets" />
+	<Import Project="Dongle.WindowsSDK.NET.Replace.targets" />
 
 	<PropertyGroup>
 		<!-- Putting it here just for the project to load -->
